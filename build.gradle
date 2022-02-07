@@ -23,9 +23,10 @@ dependencies {
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-
+        implementation 'systems.manifold:manifold-rt:2022.1.4'
         implementation 'systems.manifold:manifold-science:2022.1.4'
         implementation 'systems.manifold:manifold-ext-rt:2022.1.4'
+        include 'systems.manifold:manifold-rt:2022.1.4'
         include 'systems.manifold:manifold-science:2022.1.4'
         include 'systems.manifold:manifold-ext-rt:2022.1.4'
         // Add manifold to -processorpath for javac
