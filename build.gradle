@@ -11,11 +11,8 @@ version = project.mod_version
 group = project.maven_group
 
 repositories {
-	// Add repositories to retrieve artifacts from in here.
-	// You should only use this when depending on other mods because
-	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
-	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
-	// for more information about repositories.
+    jcenter()
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
 }
 
 dependencies {
@@ -26,6 +23,12 @@ dependencies {
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+        implementation 'systems.manifold:manifold-science:2022.1.4'
+        implementation 'systems.manifold:manifold-ext-rt:2022.1.4'
+        testImplementation 'junit:junit:4.12'
+        // Add manifold to -processorpath for javac
+        annotationProcessor 'systems.manifold:manifold-ext:2022.1.4'
 }
 
 processResources {
@@ -35,7 +38,18 @@ processResources {
 		expand "version": project.version
 	}
 }
-
+if (JavaVersion.current() != JavaVersion.VERSION_1_8 &&
+    sourceSets.main.allJava.files.any {it.name == "module-info.java"}) {
+    tasks.withType(JavaCompile) {
+        // if you DO define a module-info.java file:
+        options.compilerArgs += ['-Xplugin:Manifold', '--module-path', it.classpath.asPath]
+    }
+} else {
+    tasks.withType(JavaCompile) {
+        // If you DO NOT define a module-info.java file:
+        options.compilerArgs += ['-Xplugin:Manifold']
+    }
+}
 tasks.withType(JavaCompile).configureEach {
 	// Minecraft 1.18 (1.18-pre2) upwards uses Java 17.
 	it.options.release = 17
