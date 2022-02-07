@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "zetasapi",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Zeta's API",
+  "description": "An API for ZetaForged",
   "authors": [
-    "Me!"
+    "TwelvianZeta"
   ],
   "contact": {
     "homepage": "https://fabricmc.net/",
@@ -19,7 +19,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "zeta.zetaforged.api.ZetasAPI"
     ]
   },
   "mixins": [
@@ -28,9 +28,8 @@
 
   "depends": {
     "fabricloader": ">=0.12.12",
-    "fabric": "*",
-    "minecraft": "1.18.x",
-    "java": ">=17"
+    "minecraft": "1.17.x",
+    "java": ">=16"
   },
   "suggests": {
     "another-mod": "*"
