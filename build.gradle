@@ -53,11 +53,6 @@ if (JavaVersion.current() != JavaVersion.VERSION_1_8 &&
         options.compilerArgs += ['-Xplugin:Manifold']
     }
 }
-tasks.withType(JavaCompile).configureEach {
-	// Minecraft 1.18 (1.18-pre2) upwards uses Java 17.
-	it.options.release = 17
-}
-
 java {
 	// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
 	// if it is present.
