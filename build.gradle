@@ -31,7 +31,7 @@ dependencies {
         include 'systems.manifold:manifold-ext-rt:2022.1.4'
         // Add manifold to -processorpath for javac
         annotationProcessor group: 'systems.manifold', name: 'manifold', version: '2022.1.4'
-        annotationProcessor group: 'systems.manifold', name: 'manifold-ext', version: '2022.1.4''
+        annotationProcessor group: 'systems.manifold', name: 'manifold-ext', version: '2022.1.4'
 }
 
 processResources {
